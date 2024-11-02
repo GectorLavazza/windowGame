@@ -6,7 +6,7 @@ from screen import Screen
 
 pygame.init()
 clock = pygame.time.Clock()
-fps = 60
+fps = 30
 screen = Screen((600, 400))
 
 last_time = time.time()
