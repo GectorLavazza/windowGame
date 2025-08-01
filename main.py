@@ -15,6 +15,18 @@ running = True
 
 particles = pygame.sprite.Group()
 
+# define ball
+ball_obj = pygame.draw.circle(
+    surface=screen.surface, color='red', center=[100, 100], radius=20)
+# define speed of ball
+# speed = [X direction speed, Y direction speed]
+speed = [5, 5]
+
+
+# define colors
+red = (255, 0, 0)
+black = (0, 0, 0)
+
 while running:
 
     dt = time.time() - last_time
@@ -46,6 +58,16 @@ while running:
                 screen.dx = 0
 
     screen.update(dt)
+
+    ball_obj = ball_obj.move(speed)
+
+    if ball_obj.left <= 0 or ball_obj.right >= screen.width:
+        speed[0] = -speed[0]
+    if ball_obj.top <= 0 or ball_obj.bottom >= screen.height:
+        speed[1] = -speed[1]
+
+    pygame.draw.circle(screen.surface, color=red,
+                       center=ball_obj.center, radius=20)
 
     pygame.display.update()
     clock.tick(fps)
